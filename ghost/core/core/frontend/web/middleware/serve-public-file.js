@@ -103,7 +103,7 @@ function createPublicFileMiddleware(location, file, mime, maxAge) {
             };
 
             res.writeHead(200, cache.headers);
-            res.end(cache.body);
+            res.end(escapeHtml(cache.body));
         });
     };
 }
