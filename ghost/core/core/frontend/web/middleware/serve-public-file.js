@@ -11,6 +11,15 @@ const messages = {
     fileNotFound: 'File not found'
 };
 
+function escapeHtml(unsafe) {
+    return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+  }
+
 /**
  * If this request has a ?v= param, make sure the cache has the same key
  *
@@ -41,7 +50,7 @@ function createPublicFileMiddleware(location, file, mime, maxAge) {
     return function servePublicFileMiddleware(req, res, next) {
         if (cache && matchCacheKey(req, cache)) {
             res.writeHead(200, cache.headers);
-            return res.end(cache.body);
+            return res.end(escapeHtml(cache.body));
         }
 
         // send image files directly and let express handle content-length, etag, etc
