@@ -26,6 +26,6 @@
     "@tryghost/debug": "0.1.18",
     "@tryghost/errors": "1.2.18",
     "@tryghost/tpl": "0.1.18",
-    "lodash": "4.17.21"
+    "lodash": "4.17.23"
   }
 }
